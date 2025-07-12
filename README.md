@@ -6,19 +6,21 @@
 ### Mask Generation
 ```
 ## for virtual environment construction, follow ~/iamg/environment.yml to build and activate it.
-python test_demo.py
+cd ~/iamg
+python main_demo.py --hoi_category 'a person is riding a bicycle' --demo_sample ./demo_data/1.jpg --position [0,3,0.8,0.3,0.8]
 ```
 
 ### HOI Image Generation
 ```
-## for virtual environment construction
-cd ~/mgig
+## for final hoi image generation, alter the virtual environment to following environment, which is constructed via
+
 pip install -r requirements.txt
 pip install git+https://github.com/cocodataset/panopticapi.git
 pip install pycocotools -i https://pypi.douban.com/simple
 pip install lvis
 
 ### then generate with demo sample
+cd ~/mgig
 python inference.py
 ```
 
