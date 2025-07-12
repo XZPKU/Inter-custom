@@ -2,7 +2,7 @@
 
 
 ## Quick start
-
+our pre-trained model for iamg and mgig is stored in [LINK]() and [LINK](), download and place them at xxx.
 ### Mask Generation
 ```
 ## for virtual environment construction, follow ~/iamg/environment.yml to build and activate it.
@@ -32,7 +32,7 @@ Our data is stored in [LINK](), download and place the data like:
 
 ```
 ## Evaluation
-our pre-trained model for iamg and mgig is stored in [LINK]() and [LINK](), download and place them at xxx.
+
 ### Interaction Semantic Control
 For spatial-sensitive semantic evaluation, you should additionally follow [FGAHOI](https://github.com/xiaomabufei/FGAHOI) to construct the environment for evaluation. 
 ```
