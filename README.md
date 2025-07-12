@@ -32,7 +32,19 @@ Our data is stored in [LINK](), download and place the data like:
 
 ```
 ## Evaluation
-
+Firstly, use our model to generate hoi samples on our testset.
+```
+### for mask generation ####
+cd ~/iamg
+python main_eval.py
+```
+Then use the mask to generate HOI image
+```
+### hoi image generation ###
+cd ~/mgig
+python run_inference_hoi_w_one_stage_mask_eval.py
+```
+Then we separately evaluate the quality of generated image in terms of interaction semantic control and subject customization.
 ### Interaction Semantic Control
 For spatial-sensitive semantic evaluation, you should additionally follow [FGAHOI](https://github.com/xiaomabufei/FGAHOI) to construct the environment for evaluation. 
 ```
