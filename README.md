@@ -21,7 +21,7 @@ pip install lvis
 
 ### then generate with demo sample
 cd ~/mgig
-python inference.py
+python run_inference_demo.py
 ```
 
 ## Data prepration
