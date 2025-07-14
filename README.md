@@ -25,11 +25,17 @@ python run_inference_demo.py
 ```
 
 ## Data prepration
-Our data is stored in [LINK](), download and place the data like:
+Our data is stored in [LINK](https://www.alipan.com/t/KFYVLE2H3mJRLEnHcOb0), download and place the data like:
 ```
 -data
-   |--
-
+   |--train
+        |--image
+        |--video
+        |--video_2
+   |--test
+        |--
+   |--annos
+        |--
 ```
 ## Evaluation
 Firstly, use our model to generate hoi samples on our testset.
