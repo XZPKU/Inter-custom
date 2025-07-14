@@ -63,12 +63,24 @@ For Holistic Semantic, need to install LLaVA follow [LLaVA](https://github.com/h
 cd ~/eval/LLaVA/llava/eval
 python llava_judge.py
 ```
-
+| Model  | Holistic Semantic|Interaction Semantic|Interaction Semantic|Interaction Semantic|
+| --- | ----------- |----- |----- |----- |
+|    |   | Full | Rare | Non-rare|
+|  MIP | | | | | 
+| FastComposer | | | | |  
+|AnyDoor   | 14.32|20.42|25.43|14.78|
+| Ours  | 17.56| 22.33|27.45| 18.76|
 ### Subject Customization
 ```
 cd ~/eval
 python evaluate_hico_test.py
 python evaluate_hico_test_clip.py
 ```
+| Model  | CLIP-T|CLIP-I|DINO-human|DINO-object|DINO-pair|
+| --- | ----------- |----- |----- |----- |----- |
+|  MIP | | | | | |
+| FastComposer | | | | | | 
+|AnyDoor   | 14.32|20.42|25.43|14.78|21.72|
+| Ours  | 17.56| 22.33|27.45| 18.76|24.49 |
 
 ## Training
