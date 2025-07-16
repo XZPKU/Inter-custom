@@ -70,8 +70,8 @@ python llava_judge.py
 ### 2.Subject Customization
 ```
 cd ./eval
-python evaluate_hico_test.py
-python evaluate_hico_test_clip.py
+python eval_dino.py
+python eval_clip.py
 ```
 | Model  | CLIP-I|DINO-human|DINO-object|DINO-pair|
 | --- | ----------- |----- |----- |----- |
