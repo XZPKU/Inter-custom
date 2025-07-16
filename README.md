@@ -41,7 +41,7 @@ Firstly, use our model to generate hoi samples on our testset.
 ```
 ### for mask generation ####
 cd ./iamg
-python main_eval.py
+python main_eval.py --OUTPUT_ROOT ./OUTPUT/eval
 ```
 Then use the mask to generate HOI images
 ```
