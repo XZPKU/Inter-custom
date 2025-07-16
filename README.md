@@ -66,7 +66,7 @@ python llava_judge.py
 | --- | ----------- |----- |----- |----- |
 |    |   | Full | Rare | Non-rare|
 |AnyDoor   | 82.04|17.54 |10.63 |19.18|
-| Ours  | 86.02 |29.47| 23.13 |30.47|
+| Ours  | 86.02 |22.07|11.87|23.87|
 ### 2.Subject Customization
 ```
 cd ./eval
