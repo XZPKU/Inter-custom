@@ -65,8 +65,8 @@ python llava_judge.py
 | Model  | Holistic Semantic|Interaction Semantic|Interaction Semantic|Interaction Semantic|
 | --- | ----------- |----- |----- |----- |
 |    |   | Full | Rare | Non-rare|
-|AnyDoor   | 82.04|21.03 |18.62 |23.75|
-| Ours  | 86.02 |28.32 |19.93 |30.05|
+|AnyDoor   | 82.04|17.54 |10.63 |19.18|
+| Ours  | 86.02 |29.47| 23.13 |30.47|
 ### 2.Subject Customization
 ```
 cd ./eval
