@@ -86,5 +86,8 @@ python main.py --OUTPUT_ROOT ./OUTPUT/train --DATA_ROOT ./data
 ```
 ### 2. mgig training
 
-
+```
+cd ../mgig
+python run_train_anydoor.py
+```
 
