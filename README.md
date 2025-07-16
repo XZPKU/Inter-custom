@@ -1,26 +1,27 @@
-# Inter-custom
+# Interact-custom:Customized Human Object Interaction Image Generation
 
 
 ## Quick start
 our pre-trained model for iamg and mgig is stored in [LINK]() and [LINK](), download and place them at xxx.
-### Mask Generation
+### 1. Mask Generation
+For mask generation, first follow ./iamg/environment.yml to build the virtual environment and activate it.
 ```
-## for virtual environment construction, follow ~/iamg/environment.yml to build and activate it.
-cd ~/iamg
+cd ./iamg
 python main_demo.py --hoi_category 'a person is riding a bicycle' --demo_sample ./demo_data/1.jpg --position [0,3,0.8,0.3,0.8]
+#### demo_sample and position are used to specified the background image and union location of human-object.
 ```
 
-### HOI Image Generation
+### 2. HOI Image Generation
+For hoi image generation, alter the virtual environment to following environment, which is constructed via
 ```
-## for final hoi image generation, alter the virtual environment to following environment, which is constructed via
-
-pip install -r requirements.txt
+pip install -r ./mgig/requirements.txt
 pip install git+https://github.com/cocodataset/panopticapi.git
 pip install pycocotools -i https://pypi.douban.com/simple
 pip install lvis
-
-### then generate with demo sample
-cd ~/mgig
+```
+Then generate with demo sample
+```
+cd ./mgig
 python run_inference_demo.py
 ```
 
@@ -33,54 +34,57 @@ Our data is stored in [LINK](https://www.alipan.com/t/KFYVLE2H3mJRLEnHcOb0), dow
         |--video
         |--video_2
    |--test
-        |--
    |--annos
-        |--
 ```
 ## Evaluation
 Firstly, use our model to generate hoi samples on our testset.
 ```
 ### for mask generation ####
-cd ~/iamg
+cd ./iamg
 python main_eval.py
 ```
-Then use the mask to generate HOI image
+Then use the mask to generate HOI images
 ```
-### hoi image generation ###
-cd ~/mgig
+cd ./mgig
 python run_inference_hoi_w_one_stage_mask_eval.py
 ```
+
 Then we separately evaluate the quality of generated image in terms of interaction semantic control and subject customization.
-### Interaction Semantic Control
+### 1.Interaction Semantic Control
 For spatial-sensitive semantic evaluation, you should additionally follow [FGAHOI](https://github.com/xiaomabufei/FGAHOI) to construct the environment for evaluation. 
 ```
-cd ~/FGAHOI
+cd ./FGAHOI
 python main.py
 ```
 
 For Holistic Semantic, need to install LLaVA follow [LLaVA](https://github.com/haotian-liu/LLaVA)
 ```
-cd ~/eval/LLaVA/llava/eval
+cd ./eval/LLaVA/llava/eval
 python llava_judge.py
 ```
 | Model  | Holistic Semantic|Interaction Semantic|Interaction Semantic|Interaction Semantic|
 | --- | ----------- |----- |----- |----- |
 |    |   | Full | Rare | Non-rare|
-|  MIP | | | | | 
-| FastComposer | | | | |  
-|AnyDoor   | 14.32|20.42|25.43|14.78|
-| Ours  | 17.56| 22.33|27.45| 18.76|
-### Subject Customization
+|AnyDoor   | 82.04|21.03 |18.62 |23.75|
+| Ours  | 86.02 |28.32 |19.93 |30.05|
+### 2.Subject Customization
 ```
-cd ~/eval
+cd ./eval
 python evaluate_hico_test.py
 python evaluate_hico_test_clip.py
 ```
-| Model  | CLIP-T|CLIP-I|DINO-human|DINO-object|DINO-pair|
-| --- | ----------- |----- |----- |----- |----- |
-|  MIP | | | | | |
-| FastComposer | | | | | | 
-|AnyDoor   | 14.32|20.42|25.43|14.78|21.72|
-| Ours  | 17.56| 22.33|27.45| 18.76|24.49 |
+| Model  | CLIP-I|DINO-human|DINO-object|DINO-pair|
+| --- | ----------- |----- |----- |----- |
+|AnyDoor   | 82.31 |70.08 |72.27 |74.14|
+| Ours  |  87.60 |78.90 |81.39 |83.27|
 
 ## Training
+### 1.iamg training
+```
+cd ./iamg
+python main.py --OUTPUT_ROOT ./OUTPUT/train --DATA_ROOT ./data
+```
+### 2. mgig training
+
+
+
