@@ -48,7 +48,7 @@ The generated masks will be saved in ./OUTPUT/eval folder. Then use the masks to
 cd ../mgig
 python run_inference_hoi_w_one_stage_mask_eval.py
 ```
-
+Generated HOI images will be saved in ./iamg/OUTPUT/eval folder.
 Then we separately evaluate the quality of generated image in terms of interaction semantic control and subject customization.
 ### 1.Interaction Semantic Control
 For spatial-sensitive semantic evaluation, you should additionally follow [FGAHOI](https://github.com/xiaomabufei/FGAHOI) to construct the environment for evaluation. 
