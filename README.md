@@ -2,7 +2,7 @@
 
 
 ## Quick start
-our pre-trained model for iamg and mgig is stored in [LINK]() and [LINK](), download and place them at xxx.
+our pre-trained model for iamg and mgig is stored in [LINK]() and [LINK](), download and place them at ./ckpts.
 ### 1. Mask Generation
 For mask generation, first follow ./iamg/environment.yml to build the virtual environment and activate it.
 ```
@@ -43,9 +43,9 @@ Firstly, use our model to generate hoi samples on our testset.
 cd ./iamg
 python main_eval.py --OUTPUT_ROOT ./OUTPUT/eval
 ```
-Then use the mask to generate HOI images
+The generated masks will be saved in ./OUTPUT/eval folder. Then use the masks to generate HOI images
 ```
-cd ./mgig
+cd ../mgig
 python run_inference_hoi_w_one_stage_mask_eval.py
 ```
 
