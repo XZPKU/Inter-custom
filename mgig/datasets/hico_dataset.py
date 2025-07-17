@@ -20,7 +20,7 @@ class HICODataset_concat_h_o(BaseDataset):
         self.id_path_root = '/home/xuzhu/MoMA/data/process_data_test/'
         
         self.files = glob.glob(os.path.join(self.image_root, 'HICO_train2015_*.pt'))
-        with open("/home/xuzhu/MoMA/data/process_data/hico_test_instance_10_10.json", "r") as file:
+        with open("/network_space/server127_2/shared/xz/inter/data/data/annos/mgig_train.json", "r") as file:
             info = json.load(file)
         self.raw_files = info
         self.data = self.raw_files
