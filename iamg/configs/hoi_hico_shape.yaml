@@ -1,0 +1,61 @@
+diffusion:
+  target: ldm.models.diffusion.ldm.LatentDiffusion
+  params:
+    linear_start: 0.00085
+    linear_end: 0.012
+    timesteps: 1000
+
+model:
+  target: ldm.modules.diffusionmodules.content_ldm_hico.CondModel
+  params:
+    image_size: 64
+    in_channels: 4
+    out_channels: 4
+    model_channels: 320
+    attention_resolutions:
+    - 4
+    - 2
+    - 1
+    num_res_blocks: 2
+    channel_mult:
+    - 1
+    - 2
+    - 4
+    - 4
+    num_heads: 8
+    resblock_updown: true
+
+autoencoder:
+  target: ldm.models.autoencoder.AutoencoderKL
+  params:
+    scale_factor: 0.18215 
+    embed_dim: 4
+    ddconfig:
+      double_z: true
+      z_channels: 4
+      resolution: 256
+      in_channels: 3
+      out_ch: 3
+      ch: 128
+      ch_mult:
+      - 1
+      - 2
+      - 4
+      - 4
+      num_res_blocks: 2
+      attn_resolutions: []
+      dropout: 0.0
+
+text_encoder:
+  target: ldm.modules.encoders.modules.FrozenCLIPEmbedder
+
+train_dataset_names:
+  HicoDetHOI:
+    which_layer_text: before
+    image_size: 512
+    max_boxes_per_data: 30
+    prob_use_caption: 0.5
+    random_crop: False
+    random_flip: False
+
+

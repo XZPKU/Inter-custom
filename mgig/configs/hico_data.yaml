@@ -1,0 +1,15 @@
+Train:
+  HICODataset:
+    image_dir: ./DATA/hico_det_clip_instance
+  HICODataset_w_pose:
+    image_dir: ./DATA/hico_det_clip_instance
+  HICODataset_concat_h_o:
+    image_dir: ./DATA/hico_det_clip_instance
+  VIDEODataset:
+    image_dir: ./taobao_more_category
+
+Test:
+  HICODataset:
+    image_dir: ./DATA/hico_det_clip_instance
+
+

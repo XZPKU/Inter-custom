@@ -1,0 +1,3 @@
+pretrained_model: ../ckpts/mgig.ckpt
+config_file: configs/anydoor.yaml
+save_memory: False

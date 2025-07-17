@@ -1,0 +1,4 @@
+# ninja log v6
+1	32799	1750682808058585833	/home/xuzhu/interactdiffusion/FGAHOI/models/dab_deformable_detr/ops/build/temp.linux-x86_64-cpython-38/home/xuzhu/interactdiffusion/FGAHOI/models/dab_deformable_detr/ops/src/cpu/ms_deform_attn_cpu.o	64b95d8bef8795d0
+5	59528	1750682808062585847	/home/xuzhu/interactdiffusion/FGAHOI/models/dab_deformable_detr/ops/build/temp.linux-x86_64-cpython-38/home/xuzhu/interactdiffusion/FGAHOI/models/dab_deformable_detr/ops/src/cuda/ms_deform_attn_cuda.o	47ce27a2a6f90e0c
+7	75812	1750682808064585855	/home/xuzhu/interactdiffusion/FGAHOI/models/dab_deformable_detr/ops/build/temp.linux-x86_64-cpython-38/home/xuzhu/interactdiffusion/FGAHOI/models/dab_deformable_detr/ops/src/vision.o	555ac01901bbca0c
