@@ -2,7 +2,7 @@
 
 
 ## Quick start
-our pre-trained model for iamg and mgig is stored in [LINK]() and [LINK](), download and place them at ./ckpts.
+our pre-trained model for iamg and mgig are stored in [LINK](https://www.alipan.com/t/TALQI80rnTOe4AzZNDjp), download and place them at ./ckpts.
 ### 1. Mask Generation
 For mask generation, first follow ./iamg/environment.yml to build the virtual environment and activate it.
 ```
