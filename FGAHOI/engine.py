@@ -114,10 +114,15 @@ def evaluate_hoi(dataset_file, model, postprocessors, data_loader, subject_categ
         evaluator = HICOEvaluator(preds, gts, args.hoi_path, out_dir, epoch, use_nms=args.use_nms, nms_thresh=args.nms_thresh)
 
         rank = utils.get_rank()
+        stats = evaluator.evaluation_default()
+        if rank == 0:
+            logger.info('\n--------------------\ndefault mAP: {}\ndefault mAP rare: {}\ndefault mAP non-rare: {}\n--------------------'.format(stats['mAP_def'], stats['mAP_def_rare'], stats['mAP_def_non_rare']))
         stats_ko = evaluator.evaluation_ko()
         if rank == 0:
             logger.info('\n--------------------\nko mAP: {}\nko mAP rare: {}\nko mAP non-rare: {}\n--------------------'.format(stats_ko['mAP_ko'], stats_ko['mAP_ko_rare'], stats_ko['mAP_ko_non_rare']))
         stats.update(stats_ko)
+        if args.eval_extra:
+            evaluator.evaluation_extra()
 
             
     elif dataset_file == 'vcoco':
