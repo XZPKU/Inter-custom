@@ -264,7 +264,7 @@ class HICO_GEN_Detection(torch.utils.data.Dataset):
         img_name = img_anno['file_name']
         img_idx = f'{img_name}_0'
         img_dir = os.path.join('/home/xuzhu/MoMA/data/process_data_test',img_idx)
-        img_path = os.path.join(img_dir,'llava_judge_all_cat_mask_gen.png')
+        img_path = os.path.join(img_dir,'gen_hoi_resume_8_7.jpg')
         if os.path.exists(img_path):
             img = Image.open(img_path).convert('RGB')
         else:
