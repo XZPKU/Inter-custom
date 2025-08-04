@@ -82,7 +82,7 @@ python eval_clip.py
 ### 1.iamg training
 ```
 cd ./iamg
-python main.py --OUTPUT_ROOT ./OUTPUT/train --DATA_ROOT ./data
+python main.py --OUTPUT_ROOT ./OUTPUT/train
 ```
 ### 2. mgig training
 
