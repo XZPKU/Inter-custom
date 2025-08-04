@@ -60,7 +60,7 @@ python main.py
 For Holistic Semantic, need to install LLaVA follow [LLaVA](https://github.com/haotian-liu/LLaVA)
 ```
 cd ./eval/LLaVA/llava/eval
-python llava_judge.py
+python hico_test_hoid_w_llava.py
 ```
 | Model  | Holistic Semantic|Interaction Semantic|Interaction Semantic|Interaction Semantic|
 | --- | ----------- |----- |----- |----- |
