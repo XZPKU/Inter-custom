@@ -7,7 +7,7 @@ our pre-trained model for iamg and mgig are stored in [LINK](https://www.alipan.
 For mask generation, first follow ./iamg/environment.yml to build the virtual environment and activate it.
 ```
 cd ./iamg
-python main_demo.py --hoi_category 'a person is riding a bicycle' --demo_sample ./demo_data/1.jpg --position [0,3,0.8,0.3,0.8]
+python main_demo.py --hoi_category 'a person is riding a bicycle' --demo_sample ./demo_data/1.jpg --position [0.3,0.8,0.3,0.8]
 #### demo_sample and position are used to specified the background image and union location of human-object.
 ```
 
