@@ -1,5 +1,5 @@
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '2,3,4,7'
+os.environ['CUDA_VISIBLE_DEVICES'] = '4,5,6,7'
 import argparse
 import torch
 import json
@@ -806,12 +806,15 @@ def generate_caption(args):
             try:
                 hoi_instance_num += 1
                 image_info_path = os.path.join(root_path,f'{image_name}_{hoi_instance_num}')
+                if hoi_instance_num >0:
+                    continue
                 #info_path = os.path.join(image_info_path,'info.json')
                 #h_mask_path = os.path.join(image_info_path,'human_mask.jpg')
                 #o_mask_path = os.path.join(image_info_path,'object_mask.jpg')
                 # hoi_image_path  =os.path.join(image_info_path,'hoi.jpg')
                 # hoi_image_path  =os.path.join(image_info_path,'gen_hoi_from_youtube_finetune_post.jpg.jpg')
                 hoi_image_path  =os.path.join(image_info_path,'gen_hoi_from_youtube_finetune_post.jpg')
+                
                 # with open(info_path,'r') as f:
                 #     cat_info = json.load(f)
                 
@@ -822,47 +825,17 @@ def generate_caption(args):
                                     target['labels'][kept_box_indices.index(hoi_instance['object_id'])].item())
                 hoi_prompt = hico_text_label[verb_obj_pair]
                     
-                    
-                #hoi_category = hoi_instance['hoi_category_id']
-                # action_category = hoi_instance['category_id']
                 human_id = hoi_instance['subject_id']
                 obj_id = hoi_instance['object_id']
                 human_bbox = instance_anno[human_id]['bbox']
                 object_bbox = instance_anno[obj_id]['bbox']
-                # #union_bbox = 
-                # object_category = instance_anno[obj_id]['category_id']
-                # verb_obj_pair = (_valid_verb_ids.index(hoi_instance['category_id']),
-                #                      target['labels'][kept_box_indices.index(hoi_instance['object_id'])])
-                # hoi_prompt = hico_text_label[(action_category,object_category)]
-                
-                # hoi_img = cv2.imread(hoi_image_path)
-                # hoi_img = cv2.cvtColor(hoi_img, cv2.COLOR_BGR2RGB)
-                #hoi_image_path = os.path.join(image_info_path,'hoi.jpg')
                 hoi_image_path = os.path.join(image_info_path,'llava_judge_all_cat_mask_gen.png')
+                if not os.path.exists(hoi_image_path):
+                    hoi_image_path = os.path.join(image_info_path,'hoi.jpg')
                 hoi_img = Image.open(hoi_image_path).convert("RGB")
-                # h_mask = (cv2.imread(h_mask_path) > 128).astype(np.uint8)[:,:,0]
-                # o_mask = (cv2.imread(o_mask_path)>128).astype(np.uint8)[:,:,0]
-                # union_mask = np.maximum(h_mask,o_mask)
-                # crop_union_mask = union_mask[min(human_bbox[1],object_bbox[1]):max(human_bbox[3],object_bbox[3]),min(human_bbox[0],object_bbox[0]):max(human_bbox[2],object_bbox[2])]
                 crop_hoi_image_array = np.array(hoi_img)[min(human_bbox[1],object_bbox[1]):max(human_bbox[3],object_bbox[3]),min(human_bbox[0],object_bbox[0]):max(human_bbox[2],object_bbox[2]),:]
                 crop_hoi_image = Image.fromarray(crop_hoi_image_array)
-                #crop_hoi_image.save('./crop_img.jpg')
-                # union_mask_3 = np.stack([crop_union_mask,crop_union_mask,crop_union_mask],-1)
-                # crop_hoi_image_copy  =crop_hoi_image_array.copy()
-                # crop_hoi_image_copy[:,:,:] = 255
-                # fore_hoi = union_mask_3*crop_hoi_image + (1-union_mask_3)*crop_hoi_image_copy
-                #Image.fromarray(fore_hoi.astype(np.uint8)).save('./fore.jpg')
-                #Image.fromarray((union_mask_3*255).astype(np.uint8)).save('./union_mask.jpg')
                 query = f'Please judge whether the given image  contains {hoi_prompt[11:]}, answer yes or no.'
-                # video_save_info = {}
-                # for i in range(max_img_num):
-                #     #folder_path = os.path.join('/network_space/server128/shared/zhuoying/AnyDoor-main/taobao_video',folder_name)
-                #     if os.path.exists(os.path.join(video_folder,f'{i}_human_mask.jpg')) and os.path.exists(os.path.join(video_folder,f'{i}_object_mask.jpg')):
-                #image_to_caption = os.path.join(video_folder,f'img_{i}.png')
-                # args.query = query
-                # args.image-file = image_to_caption
-                # gen_caption = eval_model(args)
-                #gen_caption  = my_eval_model(model_path = args.model_path, model_base = args.model_base,model_name= args.model_name,query=query,conv_mode_in_arg = args.conv_mode,image_file = image_to_caption,sep,temperature=args.temperature,top_p=args.top_p,num_beams=args.num_beams,max_new_tokens=args.max_new_tokens)
                 qs = query
                 image_token_se = DEFAULT_IM_START_TOKEN + DEFAULT_IMAGE_TOKEN + DEFAULT_IM_END_TOKEN
                 if IMAGE_PLACEHOLDER in qs:
@@ -906,28 +879,14 @@ def generate_caption(args):
                     )
                 
                 outputs = tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0].strip()
-                #video_save_info[f'img_{i}.png'] = outputs
-                # sto_info = {}
-                # sto_info['image_name'] = image_name
-                # sto_info['llava_caption'] = outputs
-                # sto_info['hoi_mask'] = union_mask_3
-                # sto_info['fore_appearance'] = fore_hoi
                 if 'yes' in outputs or 'Yes' in outputs:
                     correct_num+=1
                 all_num+=1
-                all_mask_sotrage[f'{image_name}_{hoi_instance_num}'] = outputs
-                #all_mask_sotrage[hoi_category].append(sto_info)
-                # with open(os.path.join(image_info_path,'llava_caption.txt'),'w') as f:    #设置文件对象
-                #     f.write(outputs)  
-                # with open(os.path.join(root_path,'caption.'),'w') as f:
-                #     json.dump(outputs,f)  
-                print(f'finish {image_name}_{hoi_instance_num}')  
             except:
-                print(f'skip {image_name}_{hoi_instance_num}') 
+                all_num+=1
     print(f'correct num is {correct_num}')
     print(f'all num is {all_num}')
-    with open('/network_space/server128/shared/zhuoying/AnyDoor-main/datasets/all_llava_hico_test.json','w') as f:
-        json.dump(all_mask_sotrage,f)
+    print(f'holistic semantic is {correct_num/all_num}')
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
