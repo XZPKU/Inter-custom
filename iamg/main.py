@@ -16,7 +16,7 @@ if __name__ == "__main__":
     __spec__ = "ModuleSpec(name='builtins', loader=<class '_frozen_importlib.BuiltinImporter'>)"
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--DATA_ROOT", type=str,  default="/home/xuzhu/interactdiffusion/DATA", help="path to DATA")
+    parser.add_argument("--DATA_ROOT", type=str,  default="./DATA", help="path to DATA")
     parser.add_argument("--OUTPUT_ROOT", type=str,  default="OUTPUT/train", help="path to OUTPUT")
 
     parser.add_argument("--name", type=str,  default="test", help="experiment will be stored in OUTPUT_ROOT/name")
