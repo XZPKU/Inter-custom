@@ -23,6 +23,7 @@ from transformers import get_cosine_schedule_with_warmup, get_constant_schedule_
 from copy import deepcopy
 import cv2
 from PIL import Image
+import json
 # = = = = = = = = = = = = = = = = = = useful functions = = = = = = = = = = = = = = = = = #
 
 import numpy as np
@@ -417,7 +418,7 @@ class ImageCaptionSaver:
         Image.fromarray(condition_origin_shape.astype(np.uint8)).save(save_path)
         save_path = os.path.join(self.base_path, str(seen).zfill(8) + '_generation.png')
         Image.fromarray(result_origin_shape.astype(np.uint8)).save(save_path)
-    def resize_forward(self,origin_image, target, condition, generation, h,w, seen,ids=None):
+    def resize_forward(self, target, condition, generation, h,w, seen,ids=None):
         
         padd = abs(h - w)
         origin_bbox_size = max(h,w)
@@ -436,6 +437,7 @@ class ImageCaptionSaver:
             result_origin_shape = generation[:,:,ratio_padd_1:256-ratio_padd_2,:]
         
         self.base_path = './demo_result'
+        os.makedirs(self.base_path,exist_ok=True)
         save_path = os.path.join(self.base_path, str(seen).zfill(8) + '_condition.png')
         torchvision.utils.save_image(condition_origin_shape, save_path, nrow=self.nrow)
         save_path = os.path.join(self.base_path, str(seen).zfill(8) + '_generation.png')
@@ -533,7 +535,7 @@ def create_expt_folder_with_auto_resuming(OUTPUT_ROOT, name):
         os.makedirs(os.path.join(name, 'Log'),exist_ok=True)
         writer = SummaryWriter(os.path.join(name, 'Log'))
     checkpoint = '/home/xuzhu/interactdiffusion/OUTPUT/all_cat_tst_llava_judge_liantong_10_resume_from_few_cat_45000/test/tag00/checkpoint_00790001.pth'
-    print('ckpt is {checkpoint}')
+    # print('ckpt is {checkpoint}')
     return name, writer, checkpoint
 
 
@@ -811,7 +813,7 @@ class Trainer:
     def generate_batch_demo(self):
         bg_img = cv2.imread(self.config.demo_sample)
         bg_img = cv2.cvtColor(bg_img, cv2.COLOR_BGR2RGB)
-        h_s,h_e,w_s,w_e = self.config.position
+        h_s,h_e,w_s,w_e = json.loads(self.config.position)
         origin_h,origin_w = bg_img.shape[:2]
         item = self.demo_process(bg_img,h_s,h_e,w_s,w_e,max_ratio=1.0)
         item['caption'] = self.config.hoi_category
@@ -913,6 +915,6 @@ class Trainer:
             samples = torch.clamp(samples, min=-1, max=1)
 
             iter_name=0
-            origin_image  = Image.open(os.path.join(self.raw_path,'hoi.jpg'))
-            self.image_caption_saver.resize_forward(origin_image,real_target,real_condition,generation=samples, h= batch['origin_h'],w = batch['origin_w'],seen = iter_name,ids=None)
+            #origin_image  = Image.open(os.path.join(self.raw_path,'hoi.jpg'))
+            self.image_caption_saver.resize_forward(real_target,real_condition,generation=samples, h= batch['origin_h'],w = batch['origin_w'],seen = iter_name,ids=None)
     
