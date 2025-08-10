@@ -558,7 +558,8 @@ def create_expt_folder_with_auto_resuming(OUTPUT_ROOT, name):
         os.makedirs(name,exist_ok=True)
         os.makedirs(os.path.join(name, 'Log'),exist_ok=True)
         writer = SummaryWriter(os.path.join(name, 'Log'))
-        print('ckpt is {checkpoint}')
+        #print('ckpt is {checkpoint}')
+    checkpoint = '/network_space/server127_2/shared/xz/iamg.pth'
     return name, writer, checkpoint
 
 
