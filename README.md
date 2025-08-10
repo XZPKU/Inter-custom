@@ -35,6 +35,7 @@ Our data is stored in [LINK](https://www.alipan.com/t/KFYVLE2H3mJRLEnHcOb0), dow
         |--video_2
    |--test
    |--annos
+   |--hico_det_clip_instance
 ```
 ## Evaluation
 Firstly, use our model to generate hoi samples on our testset.
