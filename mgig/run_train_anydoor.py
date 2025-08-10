@@ -41,7 +41,7 @@ def main():
     dataset = ConcatDataset( image_data )
     dataloader = DataLoader(dataset, num_workers=8, batch_size=batch_size, shuffle=True)
     logger = ImageLogger(batch_frequency=logger_freq)
-    trainer = pl.Trainer(gpus=n_gpus,strategy="ddp_sharded",precision=16, accelerator="gpu",callbacks=[logger,pl.callbacks.ModelCheckpoint(every_n_train_steps=40000, save_top_k=-1,save_weights_only=True)], progress_bar_refresh_rate=1, weights_save_path='/network_space/server128/shared/zhuoying/AnyDoor-main/inv_sr_hico_ckpt',accumulate_grad_batches=accumulate_grad_batches)
+    trainer = pl.Trainer(gpus=n_gpus,strategy="ddp_sharded",precision=16, accelerator="gpu",callbacks=[logger,pl.callbacks.ModelCheckpoint(every_n_train_steps=40000, save_top_k=-1,save_weights_only=True)], progress_bar_refresh_rate=1, weights_save_path='./save_results',accumulate_grad_batches=accumulate_grad_batches)
     trainer.fit(model, dataloader)
 
 if __name__ == '__main__': 
