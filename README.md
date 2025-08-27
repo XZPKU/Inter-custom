@@ -14,7 +14,7 @@
 
 
 ## Quick start
-our pre-trained model for iamg and mgig are stored in [LINK](https://www.alipan.com/t/TALQI80rnTOe4AzZNDjp), download and place them at ./ckpts.
+our pre-trained model for iamg and mgig are stored in [LINK](https://huggingface.co/sdcdavcsvc/Interact-custom), download and place them at ./ckpts.
 ### 1. Mask Generation
 For mask generation, first follow ./iamg/environment.yml to build the virtual environment and activate it.
 ```
@@ -38,7 +38,7 @@ python run_inference_demo.py
 ```
 
 ## Data prepration
-Our data is stored in [LINK](https://www.alipan.com/t/KFYVLE2H3mJRLEnHcOb0), download and place the data like:
+Our data is stored in [LINK](https://huggingface.co/sdcdavcsvc/Interact-custom), download and place the data like:
 ```
 -data
    |--train
