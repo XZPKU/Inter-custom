@@ -1,7 +1,7 @@
 # Interact-custom:Customized Human Object Interaction Image Generation
 [![arXiv](https://img.shields.io/badge/arXiv-2508.19575-b31b1b.svg)](https://arxiv.org/abs/2508.19575)
  <a href="https://sites.google.com/view/interact-custom"> <img src="https://img.shields.io/badge/&#8459-homepage-3875B7.svg?labelColor=21438A&style=plastic" height="25px">
-
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-FFD21E?logo=huggingface&logoColor=000)](https://huggingface.co/sdcdavcsvc/Interact-custom)
 
 
 > By Zhu Xu, Zhaowen Wang, Yuxin Peng, Yang Liu*
